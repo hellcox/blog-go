@@ -1,0 +1,8 @@
+env: dev
+
+dbdsn: root:root@tcp(127.0.0.1:3306)/blog?charset=utf8mb4&parseTime=True
+
+redis:
+  host: 127.0.0.1
+  port: 6379
+  password:
