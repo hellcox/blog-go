@@ -1,23 +1,43 @@
 package model
 
-import "blog/global"
+import (
+	"blog/global"
+	"reflect"
+	"time"
+)
 
 type Article struct {
-	Id          int    `json:"id" gorm:"primary_key"`
-	Title       string `json:"title"`
-	Uuid        string `json:"uuid"`
-	Description string `json:"description"`
-	Keyword     string `json:"keyword"`
-	Cover       string `json:"cover"`
-	Content     string `json:"content"`
-	MdContent   string `json:"md_content"`
-	GmtCreate   string `json:"gmt_create"`
-	GmtUpdate   string `json:"gmt_update"`
-	Views       int    `json:"views"`
-	Status      int    `json:"status"`
+	ID          int `gorm:"primary_key"`
+	Title       string
+	Uuid        string
+	Description string
+	Keyword     string
+	Cover       string
+	Content     string
+	MdContent   string
+	Views       int
+	Status      int `gorm:"-"`
+	CreateAt    time.Time
+	UpdateAt    time.Time
+}
+
+func (a Article) IsEmpty() bool {
+	return reflect.DeepEqual(a, Article{})
+}
+
+func (Article) TableName() string {
+	return "bg_article"
 }
 
 func (a Article) GetById(id int) Article {
-	global.DB.Table("bg_article").First(&a, id)
+	global.DB.First(&a, id)
 	return a
+}
+
+func (a Article) GetListByPage(page int, limit int) (count int, arts []Article) {
+	var articles []Article
+	offset := (page - 1) * limit
+	global.DB.Limit(limit).Offset(offset).Where("status = ?", 1).Order("id desc").Find(&articles)
+	global.DB.Model(Article{}).Where("status = ?", 1).Count(&count)
+	return count, articles
 }

@@ -38,8 +38,8 @@ func main() {
 
 func router(r *gin.Engine) {
 	//首页
-	r.GET("/", control.Index)     //首页
-	r.GET("/p/:id", control.Json) //首页页码
+	r.GET("/", control.Index)      //首页
+	r.GET("/p/:id", control.Index) //首页页码
 
 	//博文
 	r.GET("/d/:id", control.ArtDetail) //博文详情

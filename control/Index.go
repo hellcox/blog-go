@@ -3,14 +3,28 @@ package control
 
 import (
 	"blog/model"
+	"blog/util"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"html/template"
 	"net/http"
 	"strconv"
 )
 
 func Index(c *gin.Context) {
-	c.String(http.StatusOK, "hello index")
+	page, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		page = 1
+	}
+	limit := 10
+	count, arts := model.Article{}.GetListByPage(page, limit)
+	fmt.Println(count)
+	fmt.Println(len(arts))
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"total": count,
+		"list":  arts,
+		"page":  template.HTML(util.Page(page, limit, count)),
+	})
 }
 
 func Json(c *gin.Context) {
@@ -27,8 +41,11 @@ func ArtDetail(c *gin.Context) {
 			"a": "hello world",
 		})
 	}
-	fmt.Println(id)
 	var art model.Article
 	art = art.GetById(id)
-	c.JSON(http.StatusOK, art)
+	fmt.Println(art.IsEmpty())
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "",
+		"row": art,
+	})
 }

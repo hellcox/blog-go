@@ -16,5 +16,6 @@ func initDB() {
 	if err != nil {
 		panic(err)
 	}
+	DB.LogMode(true)
 	log.Println("连接数据库成功")
 }
