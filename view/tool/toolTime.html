@@ -1,0 +1,111 @@
+{{template "header" .}}
+<style>
+    .time-input {
+        padding-right: 5px;
+        padding-left: 5px;
+        margin-bottom: 10px;
+        line-height: 30px;
+        height: 36px;
+        width: 48%;
+        border: 1px solid #999;
+        border-radius: 3px;
+        margin-top: 5px;
+    }
+    .time-btn{
+        padding-right: 15px;
+        padding-left: 15px;
+        line-height: 30px;
+        height: 30px;
+        border: 0;
+        border-radius: 2px;
+        color: #555;
+        font-size: 14px;
+        background: #F69281;
+    }
+    .orangered{
+        color: orangered;
+    }
+    .t-input {
+        padding-right: 5px;
+        padding-left: 5px;
+        margin-bottom: 10px;
+        line-height: 30px;
+        height: 36px;
+        width: 100%;
+        border: 1px solid #999;
+        border-radius: 3px;
+        margin-top: 5px;
+    }
+    .t-btn{
+        margin-top: 5px;
+        padding-right: 15px;
+        padding-left: 15px;
+        line-height: 30px;
+        height: 36px;
+        width: 100%;
+        border: 0;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 14px;
+        background: #F69281;
+    }
+</style>
+<main role="main" class="container">
+    <div class="row" style="font-size: 14px;">
+        <div class="col-md-12">
+            <h4>时间戳 - 日期</h4>
+            <hr>
+            <div class="mgt-20 mgb-20">
+                <span class="mgb-10">当前时间戳(秒)：<span class="timestamp orangered">{{.timestamp}}</span></span>
+                <br>
+                <span class="mgb-10">页面时间戳(秒)：<span class="orangered">{{.timestamp}}</span></span>
+            </div>
+        </div>
+
+        <div class="col-md-12"><hr><span class="mgb-10">时间戳(秒) ➜ 日期</span></div>
+        <div class="col-md-5"><input type="text" class="t-input time1in" style="float: left" value="{{.timestamp}}"></div>
+        <div class="col-md-2"><input type="submit" class="t-btn" value="转换" onclick="doChange(1)"></div>
+        <div class="col-md-5"><input type="text" class="t-input time1out" style="float: left" value=""></div>
+
+        <div class="col-md-12"><hr><span class="mgb-10">日期 ➜ 时间戳(秒)</span></div>
+        <div class="col-md-5"><input type="text" class="t-input time2in" style="float: left" value="{{.datetime}}"></div>
+        <div class="col-md-2"><input type="submit" class="t-btn" value="转换" onclick="doChange(2)"></div>
+        <div class="col-md-5"><input type="text" class="t-input time2out" style="float: left" value=""></div>
+    </div>
+</main>
+
+<script>
+    $(function () {
+        setInterval(function(){
+            var timestamp = parseInt($(".timestamp").html());
+            $(".timestamp").html(timestamp+1);
+        },1000);
+    });
+
+    function doChange(type) {
+        var value = null;
+        if (type === 1) {
+            value = $(".time1in").val();
+            var date = timestampToDate(value);
+            $(".time1out").val(date);
+        }
+        if (type === 2) {
+            value = $(".time2in").val();
+            var timestamp = Date.parse(value);
+            $(".time2out").val(timestamp / 1000);
+        }
+    }
+
+    function timestampToDate(timestamp) {
+        var date = new Date(timestamp * 1000);
+        var Y = date.getFullYear();
+        var M = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+        var D = date.getDate();
+        var h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+        var m = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+        var s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+        return Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s;
+    }
+</script>
+
+{{template "footer" .}}

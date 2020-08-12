@@ -1,0 +1,56 @@
+{{template "header" .}}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {{range .list}}
+            {{if eq .Cover ""}}
+            <div class="item" style="overflow: hidden;">
+                <div class="" style="width: 100%;display: inline-block;">
+                    <a class="limit-line-1" style="font-size: 16px; font-weight: bold;color: #444"
+                       href="/d/{{.ID}}">{{.Title}}</a>
+                    <p class="limit-line-2" style="margin-top:10px;color: #888;font-size: 14px;">{{.Description}}</p>
+                    <p style="color: #aaa;font-size: 12px;">
+                        <span><i class="fa fa-calendar"></i> {{.CreateAt.Format "2006-01-02 15:04"}} &nbsp;</span>
+                        <span><i class="fa fa-heart-o"></i> {{.Views}} </span>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            {{else}}
+            <div class="item" style="overflow: hidden;">
+                <div class="" style="width: 77%;display: inline-block;padding-right: 1rem;">
+                    <a class="limit-line-1" style="font-size: 16px; font-weight: bold;color: #444"
+                       href="/d/{{.ID}}">{{.Title}}</a>
+                    <p class="limit-line-2" style="margin-top:10px;color: #888;font-size: 14px;">{{.Description}}</p>
+                    <p style="color: #aaa;font-size: 12px;">
+                        <span>[ {{.CreateAt}} ]</span>
+                        <span><i class="fa fa-heart-o"></i> ( {{.Views}} )</span>
+                    </p>
+                </div>
+                <div style="width: 23%;display: inline-block; float: right">
+                    <img src="{{.Cover}}" alt="" width="100%" style="border-radius: 5px;">
+                </div>
+            </div>
+            <hr>
+            {{end}}
+            {{end}}
+
+            <div class="lx-page">
+                {{.page}}
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="column">
+                <div class="mgb-20" style="height: 50px;background: #FEBB50;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #F69281;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #F6B890;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #C1E4DE;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #B7D6EC;border-radius: 5px;"></div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+{{template "footer" .}}

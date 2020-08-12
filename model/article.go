@@ -2,6 +2,7 @@ package model
 
 import (
 	"blog/global"
+	"github.com/jinzhu/gorm"
 	"reflect"
 	"time"
 )
@@ -40,4 +41,8 @@ func (a Article) GetListByPage(page int, limit int) (count int, arts []Article) 
 	global.DB.Limit(limit).Offset(offset).Where("status = ?", 1).Order("id desc").Find(&articles)
 	global.DB.Model(Article{}).Where("status = ?", 1).Count(&count)
 	return count, articles
+}
+
+func (a Article) IncrViews(id int) {
+	global.DB.Model(&a).Where("id=?", id).Update("views", gorm.Expr("views + ?", 1))
 }

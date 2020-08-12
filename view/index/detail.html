@@ -1,0 +1,60 @@
+{{template "header" .}}
+
+<link rel="stylesheet" href="/asset/lib/mdeditor/css/editormd.css">
+
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {{if eq .emsg ""}}
+            <h1 class="title" style="font-size: 30px;font-weight: bold">{{.data.Title}}</h1>
+            <div class="info mgt-20" style="color: #666; font-size: 12px;">
+            <span class="pdr-10"><i class="fa fa-clock-o"></i> {{.data.UpdateAt.Format "2006-01-02 15:04"}}</span>
+                <span class="pdr-10">阅读 {{.data.Views}}</span>
+            </div>
+            <div class="content mgt-20 mgb-20" id="content" style="padding: 0 !important;">
+                <div class="markdown-body editormd-preview-container" style="padding: 0">{{.content}}</div>
+            </div>
+            <p style="text-align: right;font-size: 12px;color: #555">(ง •̀_•́)ง 创建时间：{{.data.CreateAt.Format "2006-01-02 15:04:05"}}</p>
+            {{else}}
+                <span style="color: #555;font-size: 22px;">{{.emsg}}</span>
+            {{end}}
+        </div>
+        <div class="col-md-4">
+            <div class="column">
+                <div class="mgb-20" style="height: 50px;background: #FEBB50;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #F69281;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #F6B890;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #C1E4DE;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #B7D6EC;border-radius: 5px;"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<link rel="stylesheet" href="/asset/lib/mdeditor/css/editormd.preview.css">
+<script src="/asset/lib/mdeditor/editormd.js"></script>
+<script src="/asset/lib/mdeditor/lib/marked.min.js"></script>
+<script src="/asset/lib/mdeditor/lib/prettify.min.js"></script>
+<script src="/asset/lib/mdeditor/lib/raphael.min.js"></script>
+<script src="/asset/lib/mdeditor/lib/underscore.min.js"></script>
+<script src="/asset/lib/mdeditor/lib/sequence-diagram.min.js"></script>
+<script src="/asset/lib/mdeditor/lib/flowchart.min.js"></script>
+<script src="/asset/lib/mdeditor/lib/jquery.flowchart.min.js"></script>
+<script type="text/javascript">
+    var editormdView;
+    $(function () {
+        editormdView = editormd.markdownToHTML("content", {
+            markdown: "",
+            htmlDecode: "style,script,iframe",  // you can filter tags decode
+            tocm: true,    // Using [TOCM]
+            tocContainer: "#custom-toc-container", // 自定义 ToC 容器层
+            emoji: true,
+            taskList: true,
+            tex: true,  // 默认不解析
+            flowChart: true,  // 默认不解析
+            sequenceDiagram: true,  // 默认不解析
+        });
+    });
+</script>
+
+{{template "footer" .}}

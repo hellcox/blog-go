@@ -1,0 +1,87 @@
+{{template "header" .}}
+<style>
+    .content {
+        padding-right: 5px;
+        padding-left: 5px;
+        margin-bottom: 10px;
+        line-height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        width: 100%;
+        font-size: 14px;
+    }
+    .min-h200{
+        min-height: 200px;
+    }
+    .time-btn{
+        width: 20%;
+        padding-right: 15px;
+        padding-left: 15px;
+        line-height: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 30px;
+        border: 0;
+        margin-bottom: 15px;
+        border-radius: 2px;
+        color: #555;
+        font-size: 14px;
+        background: #F69281;
+    }
+</style>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h4>MD5加密</h4>
+            <hr>
+
+            <div class="mgt-20 mgb-20" style="text-align: center">
+                <textarea name="" class="content min-h200" id="input" placeholder="请输入待处理内容"></textarea>
+
+                <input type="submit" class="time-btn" value="加密" onclick="doChange(1)">
+                <!--<input type="submit" class="time-btn" value="解密" onclick="doChange(1)">-->
+
+                <textarea name="" class="content" rows="1" id="bit32" placeholder="32位小写"></textarea>
+                <textarea name="" class="content" rows="1" id="bigbit32" placeholder="32位大写"></textarea>
+                <textarea name="" class="content" rows="1" id="bit16" placeholder="16位小写"></textarea>
+                <textarea name="" class="content" rows="1" id="bigbit16" placeholder="16位大写"></textarea>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="column">
+                <div class="mgb-20" style="height: 50px;background: #FEBB50;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #F69281;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #F6B890;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #C1E4DE;border-radius: 5px;"></div>
+                <div class="mgb-20" style="height: 50px;background: #B7D6EC;border-radius: 5px;"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="/static/js/md5.js"></script>
+
+<script>
+    $(function () {
+        setInterval(function(){
+            var timestamp = parseInt($(".timestamp").html());
+            $(".timestamp").html(timestamp+1);
+        },1000);
+    });
+
+    function doChange(type) {
+        var value = null;
+        if(type==1){
+            value = $("#input").val();
+            md5 = hex_md5(value);
+
+            $("#bit32").val(md5);
+            $("#bigbit32").val(md5.toLocaleUpperCase());
+            $("#bit16").val(md5.slice(8,24));
+            $("#bigbit16").val(md5.toLocaleUpperCase().slice(8,24));
+        }
+    }
+</script>
+
+{{template "footer" .}}

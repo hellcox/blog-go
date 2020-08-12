@@ -38,13 +38,18 @@ func main() {
 
 func router(r *gin.Engine) {
 	//首页
-	r.GET("/", control.Index)      //首页
-	r.GET("/p/:id", control.Index) //首页页码
+	r.GET("/", control.IndexTmp)      //首页
+	r.GET("/p/:id", control.IndexTmp) //首页列表分页
 
 	//博文
-	r.GET("/d/:id", control.ArtDetail) //博文详情
+	r.GET("/d/:id", control.ArtDetailTmp) //博文详情
 
 	//工具栏
-	r.GET("/tool", control.Json)       //工具首页
-	r.GET("/tool/:name", control.Json) //工具详情页
+	tool := r.Group("/tool")
+	{
+		tool.GET("/", control.ToolTmp)         //工具首页
+		tool.GET("/md5", control.ToolMd5Tmp)   //MD5
+		tool.GET("/time", control.ToolTimeTmp) //时间
+	}
+
 }

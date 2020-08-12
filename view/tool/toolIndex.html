@@ -1,0 +1,85 @@
+{{template "header" .}}
+<style>
+    .item {
+        text-decoration: none;
+        color: #fff;
+        text-align: center;
+        background: #ccc;
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        display: inline-block;
+        border-radius: 3px;
+        margin-bottom: 10px;
+    }
+
+    .item:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .item h5 {
+        background: #FEBB50;
+        width: 48%;
+        height: 50px;
+        border-radius: 5px;
+        line-height: 50px;
+        display: inline-block;
+    }
+
+    .t-bg-1 {
+        background: #F69281;
+    }
+    .t-bg-2{
+        background: #FEBB50;
+    }
+</style>
+<main role="main" class="container">
+
+    <div class="row">
+        <div class="col-md-12"><hr></div>
+        <div class="col-md-2">
+            <a href="/tool/time" class="item t-bg-1">时间戳</a>
+        </div>
+        <div class="col-md-2">
+            <a href="/tool/md5" class="item t-bg-1">MD5</a>
+        </div>
+        <div class="col-md-2">
+            <a href="/tool/ip" class="item t-bg-1">IP</a>
+        </div>
+        <div class="col-md-2">
+            <a href="/tool/base64" class="item t-bg-1">BASE64</a>
+        </div>
+        <div class="col-md-2">
+            <a href="/tool/urlencode" class="item t-bg-1">UrlEncode</a>
+        </div>
+        <div class="col-md-2">
+            <a href="/tool/md5" class="item t-bg-1">颜色表</a>
+        </div>
+
+{{/*        <div class="col-md-12"><hr></div>*/}}
+{{/*        <div class="col-md-2">*/}}
+{{/*            <a href="/tool/time" class="item t-bg-2">时间戳</a>*/}}
+{{/*        </div>*/}}
+{{/*        <div class="col-md-2">*/}}
+{{/*            <a href="/tool/md5" class="item t-bg-2">MD5加密</a>*/}}
+{{/*        </div>*/}}
+{{/*        <div class="col-md-2">*/}}
+{{/*            <a href="/tool/time" class="item t-bg-2">时间戳</a>*/}}
+{{/*        </div>*/}}
+{{/*        <div class="col-md-2">*/}}
+{{/*            <a href="/tool/md5" class="item t-bg-2">MD5加密</a>*/}}
+{{/*        </div>*/}}
+{{/*        <div class="col-md-2">*/}}
+{{/*            <a href="/tool/time" class="item t-bg-2">时间戳</a>*/}}
+{{/*        </div>*/}}
+{{/*        <div class="col-md-2">*/}}
+{{/*            <a href="/tool/md5" class="item t-bg-2">MD5加密</a>*/}}
+{{/*        </div>*/}}
+
+    </div>
+</main>
+
+<script src="/asset/lib/bootstrap/assets/js/vendor/jquery-slim.min.js"></script>
+<script src="/asset/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+{{template "footer" .}}

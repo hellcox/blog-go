@@ -1,0 +1,148 @@
+.main .item h1 {
+    font-size: 14px;
+@import;
+}
+
+.limit-line-1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.limit-line-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.mgt-10 {
+    margin-top: 10px;
+}
+
+.mgt-20 {
+    margin-top: 20px;
+}
+
+.mgb-10 {
+    margin-bottom: 10px;
+}
+
+.mgb-20 {
+    margin-bottom: 20px;
+}
+
+.pdl-10 {
+    padding-left: 10px;
+}
+
+.pdr-10 {
+    padding-right: 10px;
+}
+
+.pdr-20 {
+    padding-right: 20px;
+}
+
+.lx-page {
+    overflow: hidden;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.font-16 {
+    font-size: 16px;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+.lx-page li:last-child {
+    float: right;
+}
+
+.lx-page ul li {
+    display: inline-block;
+    width: 49%;
+    background: #ccc;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.lx-page ul li a {
+    font-size: 18px;
+    display: inline-block;
+    width: 100%;
+    background: #F69281;
+    text-align: center;
+    border-radius: 30px;
+    text-decoration: none;
+    line-height: 30px;
+    color: #fff;
+}
+
+.lx-page ul li a:hover {
+    background: #FEBB50;
+    color: #eee;
+}
+
+.lx-page ul li span {
+    font-size: 18px;
+    display: inline-block;
+    width: 100%;
+    /*background: #F6B890;*/
+    background: #F69281;
+    text-align: center;
+    border-radius: 30px;
+    color: #fff;
+    line-height: 30px;
+}
+
+.to-top {
+    position: fixed;
+    right: 5%;
+    float: right;
+    bottom: 10%;
+    z-index: 1000;
+    cursor: pointer;
+    display: none;
+}
+
+.to-top > div {
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    margin-bottom: 1px;
+    border-radius: 36px;
+    color: #F6B890;
+    clear: both;
+    line-height: 34px;
+    /*border: 2px solid #F6B890;*/
+    /*background: #fafafa;*/
+}
+
+.to-top > div.active, .to-top > div:hover {
+    /*border: 2px solid #23a0e1;*/
+    /*background-color: #23a0e1;*/
+    text-decoration: none;
+    color: #F69281;
+    transition: background-color .8s, border .8s, color .2s;
+    /*transition: border .8s;*/
+}
+
+.beian, .beian:hover {
+    color: #999;
+    text-decoration: none;
+}
