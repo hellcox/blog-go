@@ -31,6 +31,10 @@ func ToolUrlEncodeTmp(c *gin.Context) {
 
 func ToolIpTmp(c *gin.Context) {
 	ip := c.ClientIP()
+	rip := c.GetHeader("Remote_addr")
+	if rip != "" {
+		ip = rip
+	}
 	if ip == "::1" {
 		ip = "127.0.0.1"
 	}
