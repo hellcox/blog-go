@@ -1,27 +1,5 @@
 {{template "header" .}}
 <style>
-    .time-input {
-        padding-right: 5px;
-        padding-left: 5px;
-        margin-bottom: 10px;
-        line-height: 30px;
-        height: 36px;
-        width: 48%;
-        border: 1px solid #999;
-        border-radius: 3px;
-        margin-top: 5px;
-    }
-    .time-btn{
-        padding-right: 15px;
-        padding-left: 15px;
-        line-height: 30px;
-        height: 30px;
-        border: 0;
-        border-radius: 2px;
-        color: #555;
-        font-size: 14px;
-        background: #F69281;
-    }
     .orangered{
         color: orangered;
     }
@@ -35,6 +13,7 @@
         border: 1px solid #999;
         border-radius: 3px;
         margin-top: 5px;
+        outline: none;
     }
     .t-btn{
         margin-top: 5px;
@@ -47,6 +26,8 @@
         color: #fff;
         font-size: 14px;
         background: #F69281;
+        outline: none;
+        cursor: pointer;
     }
 </style>
 <main role="main" class="container">
@@ -56,7 +37,7 @@
             <hr>
             <div class="mgt-20 mgb-20">
                 <span class="mgb-10">当前时间戳(秒)：<span class="timestamp orangered">{{.timestamp}}</span></span>
-                <br>
+                <br><br>
                 <span class="mgb-10">页面时间戳(秒)：<span class="orangered">{{.timestamp}}</span></span>
             </div>
         </div>
@@ -70,6 +51,7 @@
         <div class="col-md-5"><input type="text" class="t-input time2in" style="float: left" value="{{.datetime}}"></div>
         <div class="col-md-2"><input type="submit" class="t-btn" value="转换" onclick="doChange(2)"></div>
         <div class="col-md-5"><input type="text" class="t-input time2out" style="float: left" onclick="this.select()"></div>
+
     </div>
 </main>
 

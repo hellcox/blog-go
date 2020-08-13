@@ -1,87 +1,107 @@
 {{template "header" .}}
 <style>
-    .content {
-        padding-right: 5px;
-        padding-left: 5px;
-        margin-bottom: 10px;
-        line-height: 30px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
+    textarea {
         width: 100%;
+        outline: none;
+        border: 1px solid #999;
+        resize: none;
+        height: 200px;
+        padding: 10px;
+        color: #666;
         font-size: 14px;
     }
-    .min-h200{
-        min-height: 200px;
-    }
-    .time-btn{
-        width: 20%;
-        padding-right: 15px;
-        padding-left: 15px;
-        line-height: 30px;
-        margin-left: 10px;
-        margin-right: 10px;
-        height: 30px;
+
+    .t-btn {
+        margin-bottom: 10px;
+        line-height: 36px;
+        height: 36px;
+        width: 100%;
         border: 0;
-        margin-bottom: 15px;
         border-radius: 2px;
-        color: #555;
+        color: #fff;
         font-size: 14px;
         background: #F69281;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .t-input {
+        padding: 5px;
+        margin-top: 40px;
+        border: 0;
+        border-bottom: 1px solid #999;
+        outline: none;
+        width: 100%;
+        color: #666;
+        font-size: 14px;
     }
 </style>
 <main role="main" class="container">
     <div class="row">
-        <div class="col-md-8">
-            <h4>MD5加密</h4>
+        <div class="col-md-12">
+            <h4>MD5 加密/解密</h4>
             <hr>
-
-            <div class="mgt-20 mgb-20" style="text-align: center">
-                <textarea name="" class="content min-h200" id="input" placeholder="请输入待处理内容"></textarea>
-
-                <input type="submit" class="time-btn" value="加密" onclick="doChange(1)">
-                <!--<input type="submit" class="time-btn" value="解密" onclick="doChange(1)">-->
-
-                <textarea name="" class="content" rows="1" id="bit32" placeholder="32位小写"></textarea>
-                <textarea name="" class="content" rows="1" id="bigbit32" placeholder="32位大写"></textarea>
-                <textarea name="" class="content" rows="1" id="bit16" placeholder="16位小写"></textarea>
-                <textarea name="" class="content" rows="1" id="bigbit16" placeholder="16位大写"></textarea>
-            </div>
-
         </div>
-        <div class="col-md-4">
-            <div class="column">
-                <div class="mgb-20" style="height: 50px;background: #FEBB50;border-radius: 5px;"></div>
-                <div class="mgb-20" style="height: 50px;background: #F69281;border-radius: 5px;"></div>
-                <div class="mgb-20" style="height: 50px;background: #F6B890;border-radius: 5px;"></div>
-                <div class="mgb-20" style="height: 50px;background: #C1E4DE;border-radius: 5px;"></div>
-                <div class="mgb-20" style="height: 50px;background: #B7D6EC;border-radius: 5px;"></div>
-            </div>
+
+        <div class="col-md-5">
+            <textarea id="input" placeholder="内容输出..."></textarea>
         </div>
+        <div class="col-md-2" style="line-height: 100px;">
+            <input type="submit" class="t-btn" value="加密" onclick="encode()">
+            <input type="submit" class="t-btn" value="解密" onclick="decode()">
+        </div>
+        <div class="col-md-5">
+            <textarea id="output" placeholder="结果输出..."></textarea>
+        </div>
+
+        <div class="col-md-3">
+            <input type="text" class="t-input" id="put-1" placeholder="32位小写">
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="t-input" id="put-2" placeholder="32位小写">
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="t-input" id="put-3" placeholder="16位小写">
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="t-input" id="put-4" placeholder="16位大写">
+        </div>
+
     </div>
 </main>
 
-<script src="/static/js/md5.js"></script>
-
 <script>
-    $(function () {
-        setInterval(function(){
-            var timestamp = parseInt($(".timestamp").html());
-            $(".timestamp").html(timestamp+1);
-        },1000);
-    });
-
-    function doChange(type) {
-        var value = null;
-        if(type==1){
-            value = $("#input").val();
-            md5 = hex_md5(value);
-
-            $("#bit32").val(md5);
-            $("#bigbit32").val(md5.toLocaleUpperCase());
-            $("#bit16").val(md5.slice(8,24));
-            $("#bigbit16").val(md5.toLocaleUpperCase().slice(8,24));
-        }
+    function encode() {
+        var data = {
+            "type": "md5",
+            "value": $("#input").val()
+        };
+        $.post("/tool/encode", data, function (res) {
+            $("#output").text("");
+            $("#put-1").val("");
+            $("#put-2").val("");
+            $("#put-3").val("");
+            $("#put-4").val("");
+            if (res.code === 0) {
+                $("#output").text(res.data.Lower32);
+                $("#put-1").val(res.data.Lower32);
+                $("#put-2").val(res.data.Upper32);
+                $("#put-3").val(res.data.Lower16);
+                $("#put-4").val(res.data.Upper16);
+            } else {
+                alert(res.msg)
+            }
+        })
     }
+
+    function decode() {
+        $("#output").text("");
+        $("#put-1").val("");
+        $("#put-2").val("");
+        $("#put-3").val("");
+        $("#put-4").val("");
+    }
+
 </script>
 
 {{template "footer" .}}

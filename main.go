@@ -47,9 +47,14 @@ func router(r *gin.Engine) {
 	//工具栏
 	tool := r.Group("/tool")
 	{
-		tool.GET("/", control.ToolTmp)         //工具首页
-		tool.GET("/md5", control.ToolMd5Tmp)   //MD5
-		tool.GET("/time", control.ToolTimeTmp) //时间
+		tool.GET("/", control.ToolTmp)                   //工具首页
+		tool.GET("/md5", control.ToolMd5Tmp)             //MD5
+		tool.GET("/time", control.ToolTimeTmp)           //时间
+		tool.GET("/base64", control.ToolBase64Tmp)       //base64
+		tool.GET("/urlencode", control.ToolUrlEncodeTmp) //urlEncode
+		tool.GET("/ip", control.ToolIpTmp)               //urlEncode
+		tool.POST("/encode", control.Encode)             //加密操作
+		tool.POST("/decode", control.Decode)             //解密操作
 	}
 
 }

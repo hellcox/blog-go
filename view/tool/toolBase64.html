@@ -1,0 +1,70 @@
+{{template "header" .}}
+<style>
+    textarea {
+        width: 100%;
+        outline: none;
+        border: 1px solid #999;
+        resize: none;
+        height: 200px;
+        padding: 10px;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .t-btn {
+        margin-bottom: 10px;
+        line-height: 36px;
+        height: 36px;
+        width: 100%;
+        border: 0;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 14px;
+        background: #F69281;
+        outline: none;
+        cursor: pointer;
+    }
+</style>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>BASE64 加密/解密</h4>
+            <hr>
+        </div>
+
+        <div class="col-md-5">
+            <textarea id="input" placeholder="内容输入..."></textarea>
+        </div>
+        <div class="col-md-2" style="line-height: 100px;">
+            <input type="submit" class="t-btn" value="加密" onclick="encode()">
+            <input type="submit" class="t-btn" value="解密" onclick="decode()">
+        </div>
+        <div class="col-md-5">
+            <textarea id="output" placeholder="结果输出..."></textarea>
+        </div>
+
+    </div>
+</main>
+
+<script src="/asset/js/base64.js"></script>
+<script>
+    function encode() {
+        var value = $("#input").val()
+        $("#output").text(Base64.encode(value));
+    }
+
+    function decode() {
+        $("#output").text("");
+        var value = $("#input").val();
+        var deValue = "";
+        try {
+            deValue = Base64.decode(value)
+        }catch (e) {
+            alert("无效BASE64 Code");
+        }
+        $("#output").text(deValue);
+    }
+
+</script>
+
+{{template "footer" .}}

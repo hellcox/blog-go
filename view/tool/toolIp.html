@@ -1,0 +1,29 @@
+{{template "header" .}}
+<style>
+    .orangered{
+        color: orangered;
+    }
+    .ip{
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+<main role="main" class="container">
+    <div class="row" style="font-size: 14px;">
+        <div class="col-md-12">
+            <h4>IP地址</h4>
+            <hr>
+            <div class="mgt-20 mgb-20">
+                <span class="mgb-10 ip">本机IP ：<span class="orangered" style="margin-left: 15px;">{{.ip}}</span></span>
+            </div>
+        </div>
+
+
+    </div>
+</main>
+
+<script>
+
+</script>
+
+{{template "footer" .}}
