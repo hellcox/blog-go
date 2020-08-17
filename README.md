@@ -1,2 +1,2 @@
 # blog-go 
-debug
+debug1
