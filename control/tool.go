@@ -36,7 +36,7 @@ func ToolIpTmp(c *gin.Context) {
 		ip = rip
 	}
 	if ip == "::1" {
-		ip = "127.0.0.1"
+		ip = "127.0.0.11"
 	}
 	c.HTML(http.StatusOK, "toolIp.html", gin.H{
 		"ip": ip,
