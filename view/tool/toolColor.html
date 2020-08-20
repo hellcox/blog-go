@@ -1,0 +1,45 @@
+{{template "header" .}}
+<style>
+    .orangered {
+        color: orangered;
+    }
+
+    .ip {
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+<main role="main" class="container">
+    <div class="row" style="font-size: 14px;">
+        <div class="col-md-12">
+            <h4>颜色表</h4>
+            <hr>
+
+            <div class="mgt-20 mgb-20">
+                RGB256
+                <table border="" style="width: 100%;font-size: 12px;line-height: 25px;">
+
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+</main>
+
+<script>
+    var x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
+    html = "";
+    for (i = 0; i < x.length; i++) {
+        html += '<tr>';
+        for (j = 0; j < x.length; j++) {
+            var rgb = "#"+x[i]+x[j]+x[j];
+            html += '<td style="background:'+rgb+'">' + rgb + '</td>';
+        }
+        html += '</tr>';
+    }
+    $("table").append(html);
+
+</script>
+
+{{template "footer" .}}

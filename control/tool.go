@@ -54,6 +54,12 @@ func ToolTimeTmp(c *gin.Context) {
 	})
 }
 
+func ToolColorTmp(c *gin.Context) {
+	c.HTML(http.StatusOK, "toolColor.html", gin.H{
+		"tkd":       global.TKD.ToolColor,
+	})
+}
+
 //加密操作
 func Encode(c *gin.Context) {
 	doType, _ := c.GetPostForm("type")

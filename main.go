@@ -53,6 +53,8 @@ func router(r *gin.Engine) {
 		tool.GET("/base64", control.ToolBase64Tmp)       //base64
 		tool.GET("/urlencode", control.ToolUrlEncodeTmp) //urlEncode
 		tool.GET("/ip", control.ToolIpTmp)               //urlEncode
+		tool.GET("/color", control.ToolColorTmp)        //颜色
+
 		tool.POST("/encode", control.Encode)             //加密操作
 		tool.POST("/decode", control.Decode)             //解密操作
 	}
