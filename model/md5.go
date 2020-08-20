@@ -25,6 +25,11 @@ func (m Md5) GetByM32(m32 string) Md5 {
 	return m
 }
 
+func (m Md5) GetByM16(m16 string) Md5 {
+	global.DB.Where("m16=?", m16).First(&m)
+	return m
+}
+
 func (m Md5) Save() int {
 	global.DB.Save(&m)
 	return m.ID

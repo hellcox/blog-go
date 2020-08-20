@@ -91,10 +91,8 @@ func Encode(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"code": 0,
 			"data": values,
-			"tkd":  global.Tkd{D: "x", K: "x", T: "f"},
 		})
 	case "base64":
-
 	default:
 		c.JSON(http.StatusOK, gin.H{
 			"code": 1,
@@ -105,5 +103,39 @@ func Encode(c *gin.Context) {
 
 //解密操作
 func Decode(c *gin.Context) {
+	doType, _ := c.GetPostForm("type")
+	value, _ := c.GetPostForm("value")
+	switch doType {
+	case "md5":
+		m := model.Md5{}
+		if len(value) == 16 {
+			m = m.GetByM16(value)
+		} else if len(value) == 32 {
+			m = m.GetByM32(value)
+		} else {
+			c.JSON(http.StatusOK, gin.H{
+				"code": 1,
+				"msg":  "数据格式错误",
+			})
+			return
+		}
+		if m.IsEmpty() {
+			c.JSON(http.StatusOK, gin.H{
+				"code": 1,
+				"msg":  "解密失败",
+			})
+		} else {
+			c.JSON(http.StatusOK, gin.H{
+				"code": 0,
+				"msg":  "",
+				"data": struct{ Content string }{m.Content},
+			})
+		}
 
+	default:
+		c.JSON(http.StatusOK, gin.H{
+			"code": 1,
+			"msg":  "解密类型错误",
+		})
+	}
 }

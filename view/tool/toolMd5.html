@@ -100,6 +100,17 @@
         $("#put-2").val("");
         $("#put-3").val("");
         $("#put-4").val("");
+        var data = {
+            "type": "md5",
+            "value": $("#input").val()
+        };
+        $.post("/tool/decode", data, function (res) {
+            if (res.code === 0) {
+                $("#output").text(res.data.Content);
+            } else {
+                alert(res.msg)
+            }
+        })
     }
 
 </script>
