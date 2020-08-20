@@ -2,6 +2,7 @@
 package control
 
 import (
+	"blog/global"
 	"blog/model"
 	"crypto/md5"
 	"encoding/hex"
@@ -14,19 +15,19 @@ import (
 )
 
 func ToolTmp(c *gin.Context) {
-	c.HTML(http.StatusOK, "toolIndex.html", gin.H{})
+	c.HTML(http.StatusOK, "toolIndex.html", gin.H{"tkd": global.TKD.Tools,})
 }
 
 func ToolMd5Tmp(c *gin.Context) {
-	c.HTML(http.StatusOK, "toolMd5.html", gin.H{})
+	c.HTML(http.StatusOK, "toolMd5.html", gin.H{"tkd": global.TKD.ToolMd5,})
 }
 
 func ToolBase64Tmp(c *gin.Context) {
-	c.HTML(http.StatusOK, "toolBase64.html", gin.H{})
+	c.HTML(http.StatusOK, "toolBase64.html", gin.H{"tkd": global.TKD.ToolBase64,})
 }
 
 func ToolUrlEncodeTmp(c *gin.Context) {
-	c.HTML(http.StatusOK, "toolUrlEncode.html", gin.H{})
+	c.HTML(http.StatusOK, "toolUrlEncode.html", gin.H{"tkd": global.TKD.ToolUrlEncode,})
 }
 
 func ToolIpTmp(c *gin.Context) {
@@ -39,7 +40,8 @@ func ToolIpTmp(c *gin.Context) {
 		ip = "127.0.0.1"
 	}
 	c.HTML(http.StatusOK, "toolIp.html", gin.H{
-		"ip": ip,
+		"ip":  ip,
+		"tkd": global.TKD.ToolIp,
 	})
 }
 
@@ -48,6 +50,7 @@ func ToolTimeTmp(c *gin.Context) {
 	c.HTML(http.StatusOK, "toolTime.html", gin.H{
 		"timestamp": now.Unix(),
 		"datetime":  now.Format("2006-01-02 15:04:05"),
+		"tkd":       global.TKD.ToolTime,
 	})
 }
 
@@ -88,6 +91,7 @@ func Encode(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"code": 0,
 			"data": values,
+			"tkd":  global.Tkd{D: "x", K: "x", T: "f"},
 		})
 	case "base64":
 

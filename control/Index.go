@@ -2,6 +2,7 @@
 package control
 
 import (
+	"blog/global"
 	"blog/model"
 	"blog/util"
 	"github.com/gin-gonic/gin"
@@ -22,6 +23,7 @@ func IndexTmp(c *gin.Context) {
 		"total": count,
 		"list":  arts,
 		"page":  template.HTML(util.Page(page, limit, count)),
+		"tkd":   global.TKD.Home,
 	})
 }
 
@@ -47,5 +49,6 @@ func ArtDetailTmp(c *gin.Context) {
 		"emsg":    emsg,
 		"data":    art,
 		"content": template.HTML(art.Content),
+		"tkd":     global.Tkd{T: art.Title + "小豆豆博客", K: art.Keyword, D: art.Description},
 	})
 }
