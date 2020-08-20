@@ -49,6 +49,6 @@ func ArtDetailTmp(c *gin.Context) {
 		"emsg":    emsg,
 		"data":    art,
 		"content": template.HTML(art.Content),
-		"tkd":     global.Tkd{T: art.Title + "小豆豆博客", K: art.Keyword, D: art.Description},
+		"tkd":     global.Tkd{T: art.Title + "-小豆豆博客", K: art.Keyword, D: art.Description},
 	})
 }
