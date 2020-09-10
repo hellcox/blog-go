@@ -15,7 +15,11 @@ import (
 )
 
 func ToolTmp(c *gin.Context) {
-	c.HTML(http.StatusOK, "toolIndex.html", gin.H{"tkd": global.TKD.Tools,})
+	tools := model.Tools{}.GetAllShow()
+	c.HTML(http.StatusOK, "toolIndex.html", gin.H{
+		"tkd":   global.TKD.Tools,
+		"tools": tools,
+	})
 }
 
 func ToolMd5Tmp(c *gin.Context) {
@@ -56,7 +60,7 @@ func ToolTimeTmp(c *gin.Context) {
 
 func ToolColorTmp(c *gin.Context) {
 	c.HTML(http.StatusOK, "toolColor.html", gin.H{
-		"tkd":       global.TKD.ToolColor,
+		"tkd": global.TKD.ToolColor,
 	})
 }
 
